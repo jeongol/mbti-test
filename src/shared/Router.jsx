@@ -1,26 +1,52 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Signup from "../pages/Signup";
-import Profile from "../pages/Profile";
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import TestResultPage from "../pages/TestResultPage";
-import TestResultItem from "../components/TestResultItem";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ProfilePage from "./pages/ProfilePage";
+import TestPage from "./pages/TestPage";
+import TestResultPage from "./pages/TestResultPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
 
-const Router = () => {
+function App() {
+  const [user, setUser] = useState(null);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/testresiltitem" element={<TestResultItem />} />
-        <Route path="/tsetresultpage" element={<TestResultPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <Layout user={user} setUser={setUser}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute user={user}>
+                <ProfilePage user={user} setUser={setUser} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <ProtectedRoute user={user}>
+                <TestPage user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/results"
+            element={
+              <ProtectedRoute user={user}>
+                <TestResultPage user={user} />
+              </ProtectedRoute>
+            }
+          /> */}
+        </Routes>
+      </Layout>
+    </Router>
   );
-};
+}
 
-export default Router;
+export default App;
