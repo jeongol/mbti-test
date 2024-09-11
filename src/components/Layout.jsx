@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
-// Props 로 꼭 children 만 받을 필요는 없답니다.
-const Layout = ({ children }) => {
+import { useNavigate, Link } from "react-router-dom";
+import { useEffect } from "react";
+
+const Layout = ({ user, children }) => {
   const navigate = useNavigate();
 
-  // 이곳에서 로그인 하지 않은 사용자를 login 페이지로 보내줄 거에요.
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -26,8 +26,8 @@ const Layout = ({ children }) => {
   navigate("/tsetresultpage");
   return (
     <div>
-      <header>
-        <nav>
+      <header className="py-4 px-3">
+        <nav className="flex justify-between">
           <Link to="/">홈</Link>
           <div className="space-x-4">
             {user ? (
