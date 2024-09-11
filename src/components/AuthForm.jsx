@@ -31,7 +31,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         required
       />
       <input
-        type="text"
+        type="password"
         name="password"
         value={formData.password}
         onChange={handleChange}
