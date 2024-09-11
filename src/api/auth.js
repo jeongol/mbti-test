@@ -12,6 +12,23 @@ export const login = async (userData) => {
   return response.data;
 };
 
-export const getUserProfile = async (token) => {};
+export const getUserProfile = async (token) => {
+  const response = await axios.get(`${API_URL}/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
 
-export const updateProfile = async (formData) => {};
+export const updateProfile = async (formData, token) => {
+  const token = localStorage.getItem("accessToken");
+  const response = await axios.put(`${API_URL}/profile`, formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
+      Authorization: "Bearer AㅊㅊㄷㄴㄴToken",
+    },
+  });
+  return response.data;
+};

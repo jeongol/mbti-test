@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   }, [user, navigate]);
 
   const handleLogout = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   const handleProfile = () => {
